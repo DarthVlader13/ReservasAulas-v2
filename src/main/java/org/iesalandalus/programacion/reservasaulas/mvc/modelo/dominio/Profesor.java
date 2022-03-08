@@ -128,6 +128,7 @@ public class Profesor {
 	}
 	
 	// CREAMOS MÉTODO GETPROFESORFICTICIO
+	// Este método devuelve un profesor a partir de un correo del mismo.
 	public static Profesor getProfesorFicticio (String correo) {
 		Profesor profesor=new Profesor("Jose",correo,"640785633");
 		return new Profesor(profesor);
@@ -157,9 +158,10 @@ public class Profesor {
 	//GENERAMOS MÉTODO STRING
 	@Override
 	public String toString() {
-		return "Profesor [nombre=" + nombre + ", correo=" + correo + ", telefono=" + telefono + "]";
+		if (telefono != null) {
+			return "nombre=" + nombre + ", correo=" + correo + ", teléfono=" + telefono;
+		}
+		return "nombre=" + nombre + ", correo=" + correo;
 	}
-
-
 	
 }
