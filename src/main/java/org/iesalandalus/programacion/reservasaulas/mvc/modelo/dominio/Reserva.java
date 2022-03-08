@@ -12,7 +12,7 @@ public class Reserva {
 	// GENERAMOS GETTERS AND SETTERS
 
 	/**
-	 * @return the profesor
+	 * @return the profesor 
 	 */
 	public Profesor getProfesor() {
 		return new Profesor(profesor);
