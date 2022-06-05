@@ -12,7 +12,7 @@ import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Reserva;
 import org.iesalandalus.programacion.reservasaulas.mvc.vista.IVista;
 
 public class Controlador implements IControlador {
-	
+
 	// DECLARACIÓN DE ATRIBUTOS
 	private IModelo Imodelo;
 	private IVista Ivista;
@@ -44,7 +44,7 @@ public class Controlador implements IControlador {
 	public void insertarAula(Aula aula) throws OperationNotSupportedException {
 		Imodelo.insertarAula(aula);
 	}
-	
+
 	// CREAMOS MÉTODO INSERTARPROFESOR
 	public void insertarProfesor(Profesor profesor) throws OperationNotSupportedException {
 		Imodelo.insertarProfesor(profesor);
@@ -54,7 +54,7 @@ public class Controlador implements IControlador {
 	public void borrarAula(Aula aula) throws OperationNotSupportedException {
 		Imodelo.borrarAula(aula);
 	}
-	
+
 	// CREAMOS MÉTODO BORRARPROFESOR
 	public void borrarProfesor(Profesor profesor) throws OperationNotSupportedException {
 		Imodelo.borrarProfesor(profesor);
@@ -85,6 +85,7 @@ public class Controlador implements IControlador {
 	}
 
 	// CREAMOS MÉTODO REPRESENTARRESERVA
+	@Override
 	public List<String> representarReservas() {
 		List<String> listaReservas = Imodelo.representarReservas();
 		return listaReservas;

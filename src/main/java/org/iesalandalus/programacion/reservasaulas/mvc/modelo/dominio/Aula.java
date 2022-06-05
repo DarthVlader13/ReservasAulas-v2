@@ -2,7 +2,7 @@ package org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio;
 
 import java.util.Objects;
 
-public class Aula {
+public class Aula implements Comparable<Aula> {
 
 	// DECLARACIÓN DE ATRIBUTOS
 	private final static float PUNTOS_POR_PUESTO = 0.5f;

@@ -7,13 +7,12 @@ import java.util.List;
 import javax.naming.OperationNotSupportedException;
 
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Profesor;
-import org.iesalandalus.programacion.reservasaulas.mvc.modelo.negocio.IAulas;
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.negocio.IProfesores;
 
 public class Profesores implements IProfesores {
 
 	// DECLARACIÓN DE ATRIBUTOS
-	List<Profesor> coleccionProfesores;
+	private List<Profesor> coleccionProfesores;
 
 	// CREAMOS MÉTODO GETPROFESORES
 	public List<Profesor> getProfesores() {
@@ -57,14 +56,18 @@ public class Profesores implements IProfesores {
 	}
 
 	// CREAMOS MÉTODO INSERTAR
-	public void insertar(Profesor profesor) throws OperationNotSupportedException {
-		if (profesor == null) {
+	public void insertar(Profesor insertarProfesor) throws OperationNotSupportedException {
+
+		if (insertarProfesor == null) {
 			throw new NullPointerException("ERROR: No se puede insertar un profesor nulo.");
-		} else if (buscar(profesor) == null) {
-			coleccionProfesores.add(new Profesor(profesor));
-		} else {
-			throw new OperationNotSupportedException("ERROR: Ya existe un profesor con ese nombre.");
 		}
+
+		if (!coleccionProfesores.contains(insertarProfesor)) {
+			coleccionProfesores.add(insertarProfesor);
+		} else {
+			throw new OperationNotSupportedException("ERROR: Ya existe un profesor con ese correo.");
+		}
+
 	}
 
 	// CREAMOS MÉTODO BUSCAR
@@ -83,14 +86,17 @@ public class Profesores implements IProfesores {
 	}
 
 	// CREAMOS MÉTODO BORRAR
-	public void borrar(Profesor profesor) throws OperationNotSupportedException {
-		if (profesor == null) {
+	public void borrar(Profesor borrarProfesor) throws OperationNotSupportedException {
+		if (borrarProfesor == null) {
 			throw new NullPointerException("ERROR: No se puede borrar un profesor nulo.");
-		} else if (buscar(profesor) == null) {
-			throw new OperationNotSupportedException("ERROR: No existe ningún profesor con ese nombre.");
-		} else {
-			coleccionProfesores.remove(coleccionProfesores.indexOf(profesor));
 		}
+
+		if (coleccionProfesores.contains(borrarProfesor)) {
+			coleccionProfesores.remove(borrarProfesor);
+		} else {
+			throw new OperationNotSupportedException("ERROR: No existe ningún profesor con ese correo.");
+		}
+
 	}
 
 	// CREAMOS MÉTODO REPRESENTAR

@@ -16,9 +16,9 @@ import org.iesalandalus.programacion.reservasaulas.mvc.modelo.negocio.IReservas;
 public class Modelo implements IModelo {
 
 	// DECLARACIÓN DE ATRIBUTOS
-	IProfesores profesores;
-	IAulas aulas;
-	IReservas reservas;
+	private IProfesores profesores;
+	private IAulas aulas;
+	private IReservas reservas;
 
 	// CREAMOS EL CONSTRUCTOR QUE NOS CREA LOS OBJETOS ANTERIORES CON LA CAPACIDAD
 	// REQUERIDA
@@ -138,17 +138,18 @@ public class Modelo implements IModelo {
 	
 
 	// CREAMOS MÉTODO REPRESENTARRESERVAS
+	@Override
 	public List<String> representarReservas() {
-		List<String> listaReservas = reservas.representar();
-		boolean vacio = true;
-		Iterator<String> iterador = listaReservas.iterator();
+		List<String> listaReservas=reservas.representar();
+		boolean vacio=true;
+		Iterator<String> iterador=listaReservas.iterator();
 		while (iterador.hasNext()) {
-			String auxiliar = iterador.next();
-			if (auxiliar != null) {
-				vacio = false;
-			}
+			String auxiliar=iterador.next();
+			if(auxiliar!=null) {
+				vacio=false;
+			}		
 		}
-		if (vacio == true) {
+		if(vacio==true) {
 			return null;
 		}
 		return listaReservas;

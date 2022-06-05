@@ -8,16 +8,15 @@ import javax.naming.OperationNotSupportedException;
 import org.iesalandalus.programacion.reservasaulas.mvc.controlador.IControlador;
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Aula;
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Permanencia;
-import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.PermanenciaPorTramo;
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Profesor;
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Reserva;
-import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Tramo;
 
 public class Vista implements IVista {
 
 	private final static String ERROR = "No existen reservas para el parámetro proporcionado";
 	private final static String NOMBRE_VALIDO = "Manolo";
 	private final static String CORREO_VALIDO = "manolo@eldelbombo.com";
+	private IControlador controlador;
 
 	// DECLARACIÓN DE ATRIBUTOS
 	IControlador Icontrolador;
@@ -227,21 +226,16 @@ public class Vista implements IVista {
 
 	// CREAMOS MÉTODO LISTAR RESERVAS
 	public void listarReservas() {
-		Consola.mostrarCabecera("Listar Reservas");
-		List<Reserva> listaReservas = null;
-		try {
-			Permanencia permanencia=null;
-			permanencia = new PermanenciaPorTramo(Consola.leerDia(),Tramo.TARDE);
-			listaReservas = Icontrolador.getReservasPermanencia(permanencia);	
-		} catch (NullPointerException | IllegalArgumentException e) {
-			System.out.println(e.getMessage());
-		}
-		if (listaReservas == null) {
-			System.out.println("No existen reservas");
+		Consola.mostrarCabecera("Listado de reservas existentes: ");
+		List<String> representar = controlador.representarReservas();
+
+		if (representar.size() == 0) {
+			System.out.println("No hay reservas existentes.");
 		} else {
-			Iterator<Reserva> iterador = listaReservas.iterator();
+			Iterator<String> iterador = representar.iterator();
+
 			while (iterador.hasNext()) {
-				System.out.println(iterador.next().toString());
+				System.out.println(iterador.next());
 			}
 		}
 	}

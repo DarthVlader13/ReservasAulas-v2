@@ -7,7 +7,7 @@ public abstract class Permanencia {
 
 	// DECLARACIÓN DE VARIABLES Y CONSTANTES.
 	private LocalDate dia;
-	private final static DateTimeFormatter FORMATO_DIA = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+	protected static final DateTimeFormatter FORMATO_DIA = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
 	// CONSTRUCTOR CON PARAMETROS
 	public Permanencia(LocalDate dia) {
